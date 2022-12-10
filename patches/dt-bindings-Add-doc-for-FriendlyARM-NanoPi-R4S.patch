@@ -1,0 +1,12 @@
+diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
+index c3036f95c7bc..4a6f772c1043 100644
+--- a/Documentation/devicetree/bindings/arm/rockchip.yaml
++++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
+@@ -134,6 +134,7 @@ properties:
+               - friendlyarm,nanopi-m4
+               - friendlyarm,nanopi-m4b
+               - friendlyarm,nanopi-neo4
++              - friendlyarm,nanopi-r4se
+           - const: rockchip,rk3399
+ 
+       - description: GeekBuying GeekBox
