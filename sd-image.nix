@@ -1,7 +1,30 @@
-{ config, pkgs, lib, ... }: {
-  nixpkgs.overlays = [
-    (import ./overlay.nix)
+{ config, pkgs, lib, modulesPath, ... }: {
+
+  system.stateVersion = "22.11";
+
+  imports = [
+    (modulesPath + "/profiles/headless.nix")
+    (modulesPath + "/profiles/minimal.nix")
   ];
+
+  # minimal image
+  boot.initrd.checkJournalingFS = false;
+  boot.initrd.includeDefaultModules = false;
+  boot.initrd.availableKernelModules = [ "squashfs" "ext4" "overlay" ];
+  boot.initrd.kernelModules = [ "squashfs" "ext4" "overlay" ];
+  disabledModules =
+    [ 
+      (modulesPath + "/profiles/all-hardware.nix")
+      (modulesPath + "/profiles/base.nix")
+    ];
+  environment.defaultPackages = [];
+  xdg.icons.enable  = false;
+  xdg.mime.enable   = false;
+  xdg.sounds.enable = false;
+  fonts.fontconfig.enable = lib.mkForce false;
+  documentation.man.enable = false;
+  documentation.nixos.enable = false;
+  documentation.dev.enable = false;
 
   #nixpkgs.crossSystem.system = "aarch64-linux";
   #nixpkgs.config.allowBroken = true;
